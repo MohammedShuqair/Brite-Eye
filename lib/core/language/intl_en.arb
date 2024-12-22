@@ -1,0 +1,10 @@
+{
+  "required_field": "This field is required",
+  "not_email": "This is not a valid email",
+  "password_length_min": "Password must be at least 8 characters",
+  "does_match_with_password": "Does not match with password",
+  "no_internet_connection": "No internet connection",
+  "server_error": "Server error",
+  "unknown_error": "Unknown error",
+  "please_click_double_tap_to_exit": "Please click again to exit"
+}
