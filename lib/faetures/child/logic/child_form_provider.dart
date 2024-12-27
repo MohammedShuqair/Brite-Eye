@@ -72,21 +72,11 @@ class ChildFormProvider extends SingleRequestProvider<CreateChildResponse> {
       int.parse(visionLevelUpperController.text) /
       int.parse(visionLevelLowerController.text);
 
-  Map<String, int> formatVisionLevel(double number) {
-    int upper = 6; // Always set lower to 6
-    int lower = (number * upper).ceil(); // Calculate the upper level
-
-    return {
-      'upper': upper,
-      'lower': lower,
-    };
-  }
-
   void setChildData(Child child) {
     nameController.text = child.name ?? '';
-    Map<String, int> map = formatVisionLevel(child.visionLevel ?? 0);
-    visionLevelUpperController.text = map['upper'].toString();
-    visionLevelLowerController.text = map['lower'].toString();
+    Map<String, int>? map = child.formatVisionLevel();
+    visionLevelUpperController.text = map?['upper'].toString() ?? '6';
+    visionLevelLowerController.text = map?['lower'].toString() ?? '0';
 
     birthDate = child.birthDate;
     lastExaminationDate = child.lastExamDate;

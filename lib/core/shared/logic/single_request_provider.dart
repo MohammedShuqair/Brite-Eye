@@ -40,7 +40,8 @@ abstract class SingleRequestProvider<T> extends ChangeNotifier {
     try {
       final result = await callRequest(params);
       result.fold(handleError, _handleSuccess);
-    } catch (e) {
+    } catch (e, s) {
+      print("error: $e, stack: $s");
       handleError(AppException(statusCode: -1, errors: [
         ErrorMessage(message: "An error occurred, please try again later")
       ]));

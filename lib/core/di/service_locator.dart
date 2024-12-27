@@ -1,6 +1,7 @@
 import 'package:brite_eye/core/data/network/api_base_helper.dart';
 import 'package:brite_eye/core/data/network/repository_helper.dart';
 import 'package:brite_eye/core/shared/controllers/langprovider.dart';
+import 'package:brite_eye/faetures/all_children/logic/children_provider.dart';
 import 'package:brite_eye/faetures/auth/logic/login_provider.dart';
 import 'package:brite_eye/faetures/child/repo/child_repository.dart';
 import 'package:brite_eye/faetures/home/logic/home_provider.dart';
@@ -30,4 +31,6 @@ void setupLocator() {
   locator.registerLazySingleton(() => LangProvider());
   locator.registerLazySingleton(() => UserProvider());
   locator.registerLazySingleton(() => HomeProvider(locator()));
+  locator.registerLazySingleton(
+      () => ChildrenProvider(childRepository: locator()));
 }
