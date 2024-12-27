@@ -29,6 +29,11 @@ class UserProvider extends ChangeNotifier {
     }
   }
 
+  void updateUser() {
+    updateUserFromLocal();
+    updateUserFromApi();
+  }
+
   void updateUserFromLocal() {
     user = UserHelper.getUserFromLocal();
     notifyListeners();
@@ -39,7 +44,7 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateUser(User user) {
+  void updateUserModel(User user) {
     if (this.user != null) {
       this.user!.copyWith(user);
     }

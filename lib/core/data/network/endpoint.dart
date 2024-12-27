@@ -10,4 +10,6 @@ class Endpoint {
   static const String register = "${baseUrl}register";
 
   static const String getCurrentUser = "${baseUrl}users/[id]";
+
+  static const String child = "${baseUrl}children";
 }

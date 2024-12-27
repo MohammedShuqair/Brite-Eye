@@ -10,9 +10,9 @@ mixin class DefaultRepository {
   /// [request] is a function that returns a future containing the API request.
   /// [resultBuilder] is a function that processes the API response and returns an [Either] containing an [AppException] or the data.
   /// Returns an [Either] containing an [AppException] or the data.
-  Future<Either<AppException, T?>> call<T>(
+  Future<Either<AppException, T>> call<T>(
       {required Future<Map<String, dynamic>> Function() request,
-      required Future<T?> Function(Map<String, dynamic>) resultBuilder}) async {
+      required Future<T> Function(Map<String, dynamic>) resultBuilder}) async {
     return await Task(
       request,
     )

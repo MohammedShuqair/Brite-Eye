@@ -39,7 +39,7 @@ class LoginScreen extends StatelessWidget {
               LoginProvider provider =
                   Provider.of<LoginProvider>(context, listen: false);
               return LoadableScreen(
-                  isLoading: value?.loading() ?? false,
+                  isLoading: (value?.loading() ?? false),
                   child: SingleChildScrollView(
                     child: SafeArea(
                       child: Padding(
@@ -73,9 +73,6 @@ class LoginScreen extends StatelessWidget {
                                 label: "Email",
                                 validator: ValidatorHelper.validateEmail,
                               ),
-                              const SSizedBox(
-                                height: 16,
-                              ),
                               Consumer<LoginProvider>(
                                 builder: (context, provider, child) {
                                   return PasswordField(
@@ -87,7 +84,7 @@ class LoginScreen extends StatelessWidget {
                                 },
                               ),
                               const SSizedBox(
-                                height: 32,
+                                height: 16,
                               ),
                               AppButton(
                                 onTap: () {

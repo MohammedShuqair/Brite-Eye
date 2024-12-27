@@ -58,8 +58,19 @@ class ValidatorHelper {
   /// [name] - The name string to validate.
   /// Returns a validation error message if invalid, otherwise null.
   static String? validateName(String? name) {
-    if (name?.isEmpty ?? false) {
+    if (name?.isEmpty ?? true) {
       return kLocalize.required_field;
+    }
+    return null;
+  }
+
+  static String? validateInt(String? number) {
+    if (number?.isEmpty ?? true) {
+      return kLocalize.required_field;
+    }
+    int? num = int.tryParse(number!);
+    if (num == null) {
+      return "Please enter a valid number";
     }
     return null;
   }

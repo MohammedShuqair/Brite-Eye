@@ -14,12 +14,23 @@ class LoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var loadingSize = this.loadingSize ?? 56;
     return Container(
       width: size ?? double.infinity,
       height: size ?? double.infinity,
       color: Colors.transparent,
-      child: LoadingAnimationWidget.inkDrop(
-          color: context.primary, size: loadingSize ?? 56),
+      child: UnconstrainedBox(
+        child: Container(
+          width: loadingSize + 32,
+          height: loadingSize + 32,
+          decoration: BoxDecoration(
+            color: context.surface.withOpacity(0.9),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: LoadingAnimationWidget.inkDrop(
+              color: context.tertiary, size: loadingSize),
+        ),
+      ),
     );
   }
 }

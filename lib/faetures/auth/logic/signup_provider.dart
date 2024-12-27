@@ -9,7 +9,7 @@ import '../models/auth_response.dart';
 import '../repository/auth_repository.dart';
 import '../repository/params/sign_up_params.dart';
 
-/// A provider class for managing sign-up related logic and state.
+/// A logic class for managing sign-up related logic and state.
 class SingUpProvider extends ChangeNotifier {
   /// The repository for authentication-related operations.
   final AuthRepository _authRepository;
@@ -37,7 +37,7 @@ class SingUpProvider extends ChangeNotifier {
 
   /// Constructor for initializing the SingUpProvider with the given context.
   ///
-  /// [userProvider] - The user provider for managing user-related state.
+  /// [userProvider] - The user logic for managing user-related state.
   SingUpProvider() : _authRepository = AuthRepository() {
     print("build SingUpProvider");
   }
@@ -149,7 +149,7 @@ class SingUpProvider extends ChangeNotifier {
     _setState(ApiResponse.error(message: e.toString()));
   }
 
-  /// Disposes of the controllers when the provider is no longer needed.
+  /// Disposes of the controllers when the logic is no longer needed.
   @override
   void dispose() {
     emailController.dispose();

@@ -70,26 +70,17 @@ class SignupScreen extends StatelessWidget {
                           label: "caregiver name",
                           validator: ValidatorHelper.validateName,
                         ),
-                        const SSizedBox(
-                          height: 16,
-                        ),
                         AppField(
                           key: const Key('emailField'),
                           controller: provider.emailController,
                           label: "email",
                           validator: ValidatorHelper.validateEmail,
                         ),
-                        const SSizedBox(
-                          height: 16,
-                        ),
                         PasswordField(
                           key: const Key('passwordField'),
                           controller: provider.passwordController,
                           label: "password",
                           validator: ValidatorHelper.validatePassword,
-                        ),
-                        const SSizedBox(
-                          height: 16,
                         ),
                         PasswordField(
                           key: const Key('confirmPasswordField'),
@@ -98,9 +89,6 @@ class SignupScreen extends StatelessWidget {
                           validator: (confirm) =>
                               ValidatorHelper.validateConfirmPassword(
                                   confirm, provider.passwordController.text),
-                        ),
-                        const SSizedBox(
-                          height: 16,
                         ),
                         GenderDropDown(
                           selectedItem: provider.gender,

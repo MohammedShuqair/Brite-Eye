@@ -6,7 +6,7 @@ import '../../../core/shared/vars/lang.dart';
 import '../../profile/logic/user_provider.dart';
 import '../../profile/ui/profile_screen.dart';
 
-/// A provider class for managing the state and logic of the home screen.
+/// A logic class for managing the state and logic of the home screen.
 class HomeProvider extends ChangeNotifier {
   /// The timestamp of the last back press.
   DateTime? currentBackPressTime;
@@ -14,12 +14,12 @@ class HomeProvider extends ChangeNotifier {
   /// A flag indicating whether the app can pop now.
   bool canPopNow = false;
 
-  /// Constructs a [HomeProvider] and initializes the user provider.
+  /// Constructs a [HomeProvider] and initializes the user logic.
   ///
-  /// [userProvider] - The user provider to update the user from local storage.
+  /// [userProvider] - The user logic to update the user from local storage.
   HomeProvider(UserProvider userProvider) {
     WidgetsBinding.instance.addPostFrameCallback((d) {
-      userProvider.updateUserFromApi();
+      userProvider.updateUser();
     });
   }
 

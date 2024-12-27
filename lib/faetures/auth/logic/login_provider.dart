@@ -9,7 +9,7 @@ import '../../../core/shared/vars/lang.dart';
 import '../models/auth_response.dart';
 import '../repository/auth_repository.dart';
 
-/// A provider class for managing login-related logic and state.
+/// A logic class for managing login-related logic and state.
 class LoginProvider extends ChangeNotifier {
   /// The repository for authentication-related operations.
   final AuthRepository _authRepository;
@@ -133,7 +133,7 @@ class LoginProvider extends ChangeNotifier {
     _setState(ApiResponse.error(message: e.toString()));
   }
 
-  /// Disposes of the controllers when the provider is no longer needed.
+  /// Disposes of the controllers when the logic is no longer needed.
   @override
   void dispose() {
     emailController.dispose();

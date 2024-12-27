@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '../../../../core/assets/assets.gen.dart';
 import '../../../../core/helpers/navigation_helper.dart';
 import '../../../../core/helpers/user_helper.dart';
-import '../../../../core/shared/widgets/loadable_screen.dart';
 import '../../../home/ui/home_screen.dart';
 import '../../../profile/models/user.dart';
 
@@ -38,22 +37,18 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: context.primaryFixed,
-        body: LoadableScreen(
-          isLoading: true,
-          size: 120,
-          child: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-              context.primary,
-              context.primaryFixed,
-            ])),
-            child: SafeArea(
-              child: Center(
-                child: Assets.icons.logo.image(
-                  fit: BoxFit.cover,
-                  width: 120,
-                  height: 120,
-                ),
+        body: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [
+            context.primary,
+            context.primaryFixed,
+          ])),
+          child: SafeArea(
+            child: Center(
+              child: Assets.icons.logo.image(
+                fit: BoxFit.cover,
+                width: 120,
+                height: 120,
               ),
             ),
           ),

@@ -21,6 +21,11 @@ class AppField extends StatelessWidget {
     this.centerInput = false,
     this.onEditingComplete,
     this.keyboardType,
+    this.margin,
+    this.onTap,
+    this.readOnly = false,
+    this.maxLines = 1,
+    this.minLines,
   });
 
   final TextEditingController controller;
@@ -28,6 +33,7 @@ class AppField extends StatelessWidget {
   final Widget? suffixIcon;
   final bool obscureText;
   final bool enabled;
+  final bool readOnly;
   final String? Function(String?)? validator;
   final TextInputAction? textInputAction;
   final EdgeInsetsGeometry? padding;
@@ -37,31 +43,42 @@ class AppField extends StatelessWidget {
   final bool centerInput;
   final VoidCallback? onEditingComplete;
   final TextInputType? keyboardType;
+  final EdgeInsetsGeometry? margin;
+  final Function()? onTap;
+  final int? maxLines;
+  final int? minLines;
 
   @override
   Widget build(BuildContext context) {
     //styleName: Text/Regular/Medium;
     // font-family: Outfit;
 
-    return TextFormField(
-      focusNode: focusNode,
-      enabled: enabled,
-      controller: controller,
-      textInputAction: textInputAction,
-      keyboardType: keyboardType,
-      validator: validator,
-      onEditingComplete: onEditingComplete,
-      style: context.titleMedium.copyWith(
-        color: context.onSurface,
+    return Padding(
+      padding: margin ?? EdgeInsets.only(bottom: 16.h),
+      child: TextFormField(
+        onTap: onTap,
+        maxLines: maxLines,
+        minLines: minLines,
+        focusNode: focusNode,
+        enabled: enabled,
+        readOnly: readOnly,
+        controller: controller,
+        textInputAction: textInputAction,
+        keyboardType: keyboardType,
+        validator: validator,
+        onEditingComplete: onEditingComplete,
+        style: context.titleMedium.copyWith(
+          color: context.onSurface,
+        ),
+        onTapOutside: (focusNode) {
+          FocusScope.of(context).unfocus();
+        },
+        obscureText: obscureText,
+        inputFormatters: inputFormatters,
+        textAlign: centerInput ? TextAlign.center : TextAlign.start,
+        decoration: buildAppInputDecoration(context,
+            padding: padding, suffixIcon: suffixIcon, radius: radius),
       ),
-      onTapOutside: (focusNode) {
-        FocusScope.of(context).unfocus();
-      },
-      obscureText: obscureText,
-      inputFormatters: inputFormatters,
-      textAlign: centerInput ? TextAlign.center : TextAlign.start,
-      decoration: buildAppInputDecoration(context,
-          padding: padding, suffixIcon: suffixIcon, radius: radius),
     );
   }
 
@@ -72,6 +89,7 @@ class AppField extends StatelessWidget {
     double radius = 32,
   }) {
     return InputDecoration(
+      errorMaxLines: 2,
       contentPadding:
           padding ?? EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.w),
       hintText: label,

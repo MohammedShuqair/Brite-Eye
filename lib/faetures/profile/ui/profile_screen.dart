@@ -1,5 +1,6 @@
 import 'package:brite_eye/core/helpers/navigation_helper.dart';
 import 'package:brite_eye/core/shared/controllers/langprovider.dart';
+import 'package:brite_eye/faetures/child/ui/child_form_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -31,6 +32,12 @@ class ProfileScreen extends StatelessWidget {
                   },
                 ),
               );
+            },
+          ),
+          ListTile(
+            title: const Text("Add Child"),
+            onTap: () {
+              NavigationHelper.push(ChildFormScreen.id);
             },
           ),
           ListTile(

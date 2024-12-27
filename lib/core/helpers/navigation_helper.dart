@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:brite_eye/core/extentions/snak_bar.dart';
 import 'package:brite_eye/core/routing/router.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../data/local/shared_preferences.dart';
 
@@ -70,10 +70,12 @@ class NavigationHelper {
   /// [message] is the text to display in the SnackBar.
   /// [isError] determines the background color of the SnackBar. If true, the background color will be [inverseSurface], otherwise [primary].
   /// [background] is an optional parameter to specify a custom background color.
-  static void showSnackBar(String message,
+  static void showSnackBar(String? message,
       {bool isError = true, Color? background}) {
-    navigatorKey.currentContext
-        ?.showSnackBar(message, isError: isError, background: background);
+    if (message != null) {
+      navigatorKey.currentContext
+          ?.showSnackBar(message, isError: isError, background: background);
+    }
   }
 
   /// Pops all pages and removes user data from shared preferences.

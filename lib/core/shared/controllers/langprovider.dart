@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:brite_eye/core/helpers/lang_helper.dart';
+import 'package:flutter/material.dart';
 
 import '../../generated/l10n.dart';
 
-/// A provider class for managing language settings in the application.
+/// A logic class for managing language settings in the application.
 ///
 /// This class extends [ChangeNotifier] to notify listeners when the locale changes.
 class LangProvider with ChangeNotifier {
