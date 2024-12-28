@@ -1,4 +1,5 @@
 import 'package:brite_eye/core/di/service_locator.dart';
+import 'package:brite_eye/faetures/activities/examination/ishihara/ui/result_screen.dart';
 import 'package:brite_eye/faetures/all_children/logic/children_provider.dart';
 import 'package:brite_eye/faetures/auth/ui/screens/login_screen.dart';
 import 'package:brite_eye/faetures/auth/ui/screens/signup_screen.dart';
@@ -8,6 +9,8 @@ import 'package:brite_eye/faetures/profile/logic/user_provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
+import '../../faetures/activities/examination/ishihara/logic/Ishihara_provider.dart';
+import '../../faetures/activities/examination/ishihara/ui/ishihara_screen.dart';
 import '../../faetures/all_children/ui/children_screen.dart';
 import '../../faetures/auth/logic/signup_provider.dart';
 import '../../faetures/auth/ui/screens/splash_screen.dart';
@@ -45,10 +48,12 @@ GoRouter router = GoRouter(
       GoRoute(
         path: HomeScreen.id,
         name: HomeScreen.id,
-        builder: (context, state) => ChangeNotifierProvider.value(
-          value: locator<HomeProvider>(),
-          child: HomeScreen(),
-        ),
+        builder: (context, state) {
+          return ChangeNotifierProvider.value(
+            value: locator<HomeProvider>(),
+            child: HomeScreen(),
+          );
+        },
       ),
       GoRoute(
         path: ChildFormScreen.id,
@@ -64,9 +69,35 @@ GoRouter router = GoRouter(
       GoRoute(
         path: ChildrenScreen.id,
         name: ChildrenScreen.id,
-        builder: (context, state) => ChangeNotifierProvider.value(
-          value: locator<ChildrenProvider>(),
-          child: ChildrenScreen(),
-        ),
+        builder: (context, state) {
+          var childrenProvider = locator<ChildrenProvider>();
+          childrenProvider.performRequest();
+          return ChangeNotifierProvider.value(
+            value: childrenProvider,
+            child: ChildrenScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        path: IshiharaScreen.id,
+        name: IshiharaScreen.id,
+        builder: (context, state) {
+          return ChangeNotifierProvider.value(
+            value: locator<IshiharaProvider>(),
+            child: IshiharaScreen(),
+          );
+        },
+      ),
+      GoRoute(
+        path: ResultScreen.id,
+        name: ResultScreen.id,
+        builder: (context, state) {
+          Map<String, dynamic> args = state.extra as Map<String, dynamic>;
+
+          return ResultScreen(
+            title: args['title'],
+            score: args['score'],
+          );
+        },
       ),
     ]);

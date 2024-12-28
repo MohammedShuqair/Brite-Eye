@@ -48,7 +48,7 @@ class ChildFormProvider extends SingleRequestProvider<CreateChildResponse> {
       lastExamDate: DateFormatter.formatToYYYYMMDD(lastExaminationDate),
       weakEye: weakEye,
       otherDetails: otherDetailsController.text,
-      userId: caregiverId,
+      userId: DateTime.now().millisecondsSinceEpoch,
     );
     if (child == null) {
       return childRepository.createChild(params);
@@ -60,7 +60,7 @@ class ChildFormProvider extends SingleRequestProvider<CreateChildResponse> {
   @override
   void handleSuccess(CreateChildResponse serverResponse) {
     NavigationHelper.showSnackBar(serverResponse.message, isError: false);
-    NavigationHelper.pop();
+    NavigationHelper.pop(serverResponse.child);
   }
 
   @override

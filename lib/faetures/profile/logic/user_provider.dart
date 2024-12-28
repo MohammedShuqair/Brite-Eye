@@ -61,9 +61,13 @@ class UserProvider extends ChangeNotifier {
 
   void saveSelectedChild(Child? child) {
     var childId = child?.userId;
+    print("added $childId");
+
     if (childId != null) {
       selectedChild = child;
       UserHelper.saveSelectedChild(child!);
+      print("updated");
+
       notifyListeners();
     }
   }
@@ -73,5 +77,9 @@ class UserProvider extends ChangeNotifier {
       return selectedChild?.userId == childId;
     }
     return false;
+  }
+
+  bool childSelected() {
+    return selectedChild != null;
   }
 }

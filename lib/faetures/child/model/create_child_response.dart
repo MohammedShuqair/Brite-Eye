@@ -24,12 +24,11 @@ class CreateChildResponse {
   factory CreateChildResponse.fromJson(Map<String, dynamic> json) =>
       CreateChildResponse(
         message: json["message"],
-        child:
-            json["children"] == null ? null : Child.fromJson(json["children"]),
+        child: json["child"] == null ? null : Child.fromJson(json["child"]),
       );
 
   Map<String, dynamic> toJson() => {
         "message": message,
-        "children": child?.toJson(),
+        "child": child?.toJson(),
       };
 }

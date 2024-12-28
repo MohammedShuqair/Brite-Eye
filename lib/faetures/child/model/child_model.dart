@@ -41,10 +41,26 @@ class Child {
     }
   }
 
+  void copyFrom(Child child) {
+    userId = userId ?? child.userId;
+    name = name ?? child.name;
+    birthDate = birthDate ?? child.birthDate;
+    weakEye = weakEye ?? child.weakEye;
+    otherDetails = otherDetails ?? child.otherDetails;
+    visionLevel = visionLevel ?? child.visionLevel;
+    lastExamDate = lastExamDate ?? child.lastExamDate;
+    updatedAt = updatedAt ?? child.updatedAt;
+    createdAt = createdAt ?? child.createdAt;
+    caregiversId = caregiversId ?? child.caregiversId;
+  }
+
   factory Child.fromJson(Map<String, dynamic> json) {
     dynamic visionLevel = json["vision_level"];
     if (visionLevel is String) {
       visionLevel = double.tryParse(visionLevel);
+    }
+    if (visionLevel is int) {
+      visionLevel = visionLevel.toDouble();
     }
     return Child(
         userId: json["user_id"],
@@ -71,12 +87,12 @@ class Child {
         "user_id": userId,
         "name": name,
         "birth_date":
-            "${birthDate!.year.toString().padLeft(4, '0')}-${birthDate!.month.toString().padLeft(2, '0')}-${birthDate!.day.toString().padLeft(2, '0')}",
+            "${birthDate?.year.toString().padLeft(4, '0')}-${birthDate?.month.toString().padLeft(2, '0')}-${birthDate?.day.toString().padLeft(2, '0')}",
         "weak_eye": weakEye,
         "other_details": otherDetails,
         "vision_level": visionLevel,
         "last_exam_date":
-            "${lastExamDate!.year.toString().padLeft(4, '0')}-${lastExamDate!.month.toString().padLeft(2, '0')}-${lastExamDate!.day.toString().padLeft(2, '0')}",
+            "${lastExamDate?.year.toString().padLeft(4, '0')}-${lastExamDate?.month.toString().padLeft(2, '0')}-${lastExamDate?.day.toString().padLeft(2, '0')}",
         "updated_at": updatedAt?.toIso8601String(),
         "created_at": createdAt?.toIso8601String(),
         "caregivers_id": caregiversId

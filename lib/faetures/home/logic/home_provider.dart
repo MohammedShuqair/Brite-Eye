@@ -1,9 +1,9 @@
 import 'package:brite_eye/core/extentions/color_theme.dart';
 import 'package:brite_eye/core/helpers/navigation_helper.dart';
+import 'package:brite_eye/faetures/activities/ui/activities_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/shared/vars/lang.dart';
-import '../../profile/logic/user_provider.dart';
 import '../../profile/ui/profile_screen.dart';
 
 /// A logic class for managing the state and logic of the home screen.
@@ -17,11 +17,7 @@ class HomeProvider extends ChangeNotifier {
   /// Constructs a [HomeProvider] and initializes the user logic.
   ///
   /// [userProvider] - The user logic to update the user from local storage.
-  HomeProvider(UserProvider userProvider) {
-    WidgetsBinding.instance.addPostFrameCallback((d) {
-      userProvider.updateUser();
-    });
-  }
+  HomeProvider();
 
   /// Handles the back button press.
   ///
@@ -74,9 +70,7 @@ class HomeProvider extends ChangeNotifier {
   /// A list of screens corresponding to each bottom navigation item.
   /// Don't use const to enable language change in profile screen.
   List<Widget> get screens => [
-        Container(
-          color: Colors.purple,
-        ),
+        ActivitiesScreen(),
         Container(
           color: Colors.green,
         ),

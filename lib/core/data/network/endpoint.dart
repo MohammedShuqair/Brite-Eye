@@ -12,4 +12,6 @@ class Endpoint {
   static const String getCurrentUser = "${baseUrl}users/[id]";
 
   static const String child = "${baseUrl}children";
+
+  static const String users = "${baseUrl}users";
 }
