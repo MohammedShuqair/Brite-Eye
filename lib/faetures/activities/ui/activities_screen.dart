@@ -3,6 +3,7 @@ import 'package:brite_eye/core/extentions/text_theme.dart';
 import 'package:brite_eye/core/helpers/navigation_helper.dart';
 import 'package:brite_eye/core/shared/widgets/app_button.dart';
 import 'package:brite_eye/core/shared/widgets/ssized_box.dart';
+import 'package:brite_eye/faetures/activities/games/ui/follow_ball.dart';
 import 'package:brite_eye/faetures/child/model/child_model.dart';
 import 'package:brite_eye/faetures/profile/logic/user_provider.dart';
 import 'package:flutter/material.dart';
@@ -113,7 +114,33 @@ class ActivitiesScreen extends StatelessWidget {
                               color: context.onSurface,
                             ),
                           ),
-                        )
+                        ),
+                        SSizedBox(
+                          height: 32.h,
+                        ),
+                        Text(
+                          "Games 🎮️",
+                          style: context.bodyLarge,
+                        ),
+                        SSizedBox(
+                          height: 24.h,
+                        ),
+                        ListTile(
+                          onTap: () async {
+                            NavigationHelper.push(FollowBallScreen.id);
+                          },
+                          tileColor: context.secondaryContainer,
+                          leading: const Icon(
+                            Icons.link,
+                            size: 30,
+                          ),
+                          title: Text(
+                            "Follow the ball",
+                            style: context.bodyLarge.copyWith(
+                              color: context.onSurface,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),

@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 
 import '../../faetures/activities/examination/ishihara/logic/Ishihara_provider.dart';
 import '../../faetures/activities/examination/ishihara/ui/ishihara_screen.dart';
+import '../../faetures/activities/games/ui/follow_ball.dart';
 import '../../faetures/all_children/ui/children_screen.dart';
 import '../../faetures/all_doctors/ui/doctors_screen.dart';
 import '../../faetures/auth/logic/signup_provider.dart';
@@ -111,5 +112,10 @@ GoRouter router = GoRouter(
             child: DoctorsScreen(),
           );
         },
+      ),
+      GoRoute(
+        path: FollowBallScreen.id,
+        name: FollowBallScreen.id,
+        builder: (context, state) => FollowBallScreen(),
       ),
     ]);
