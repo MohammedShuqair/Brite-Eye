@@ -28,6 +28,8 @@ class ChildFormScreen extends StatelessWidget {
       ),
       body: Consumer<ChildFormProvider>(
         builder: (context, provider, child) {
+          print("provider.weakEye");
+          print(provider.weakEye);
           return LoadableScreen(
             isLoading: provider.isLoading(),
             child: SingleChildScrollView(
@@ -75,6 +77,36 @@ class ChildFormScreen extends StatelessWidget {
                       VisionLevelFields(
                         lower: provider.visionLevelLowerController,
                         upper: provider.visionLevelUpperController,
+                      ),
+                      SSizedBox(
+                        height: 24,
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 16.w, vertical: 14.w),
+                        decoration: BoxDecoration(
+                          color: context.secondaryContainer,
+                          borderRadius: BorderRadius.circular(32),
+                        ),
+                        child: SizedBox(
+                          width: 100,
+                          child: DropdownButton<String?>(
+                            value: provider.weakEye,
+                            hint: Text("Weak Eye"),
+                            underline: Container(),
+                            isExpanded: true,
+                            isDense: true,
+                            items: ["right", "left"]
+                                .map((value) => DropdownMenuItem(
+                                      value: value,
+                                      child: Text(value),
+                                    ))
+                                .toList(),
+                            onChanged: (v) {
+                              provider.setWeakEye(v);
+                            },
+                          ),
+                        ),
                       ),
                       SSizedBox(
                         height: 24,

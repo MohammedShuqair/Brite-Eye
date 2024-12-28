@@ -46,7 +46,7 @@ class ChildFormProvider extends SingleRequestProvider<CreateChildResponse> {
       visionLevel: calcVisionLevel(),
       birthDate: DateFormatter.formatToYYYYMMDD(birthDate),
       lastExamDate: DateFormatter.formatToYYYYMMDD(lastExaminationDate),
-      weakEye: weakEye,
+      weakEye: weakEye?.toLowerCase(),
       otherDetails: otherDetailsController.text,
       userId: caregiverId,
     );
@@ -66,6 +66,11 @@ class ChildFormProvider extends SingleRequestProvider<CreateChildResponse> {
   @override
   bool requestGard() {
     return formKey.currentState?.validate() ?? false;
+  }
+
+  void setWeakEye(String? value) {
+    weakEye = value;
+    notifyListeners();
   }
 
   double calcVisionLevel() =>
