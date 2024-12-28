@@ -9,7 +9,10 @@ import 'package:brite_eye/faetures/profile/logic/user_provider.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../faetures/activities/examination/ishihara/logic/Ishihara_provider.dart';
+import '../../faetures/all_doctors/logic/doctor_provider.dart';
+import '../../faetures/all_doctors/repo/doctor_repository.dart';
 import '../../faetures/auth/logic/signup_provider.dart';
+import '../../faetures/doctor/logic/doctor_provider.dart';
 
 final GetIt locator = GetIt.instance;
 
@@ -23,6 +26,10 @@ void setupLocator() {
         apiBaseHelper: locator(),
         defaultRepository: locator(),
       ));
+  locator.registerLazySingleton(() => DoctorRepository(
+        apiBaseHelper: locator(),
+        defaultRepository: locator(),
+      ));
 
   // Register Providers
   locator.registerFactory(() => SingUpProvider());
@@ -33,7 +40,13 @@ void setupLocator() {
   locator.registerLazySingleton(() => LangProvider());
   locator.registerLazySingleton(() => UserProvider());
   locator.registerLazySingleton(() {
-    return HomeProvider();
+    return HomeProvider(
+        doctorProvider: DoctorProvider(
+      childRepository: locator(),
+    ));
+  });
+  locator.registerLazySingleton(() {
+    return DoctorsProvider(childRepository: locator());
   });
 
   locator.registerLazySingleton(

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:brite_eye/core/data/local/shared_preferences.dart';
 import 'package:brite_eye/faetures/child/model/child_model.dart';
 
+import '../../faetures/all_doctors/models/doctor.dart';
 import '../../faetures/profile/models/user.dart';
 
 /// A helper class for managing user-related data in local storage.
@@ -53,6 +54,19 @@ class UserHelper {
     String? json = SharedHelper.getString(key: PrefKeys.selectedChild);
     if (json != null) {
       return Child.fromJson(jsonDecode(json));
+    }
+    return null;
+  }
+
+  static Future<void> saveSelectedDoctor(Doctor doctor) async {
+    await SharedHelper.setString(
+        key: PrefKeys.selectedDoctor, value: jsonEncode(doctor.toJson()));
+  }
+
+  static Doctor? getSelectedDoctor() {
+    String? json = SharedHelper.getString(key: PrefKeys.selectedDoctor);
+    if (json != null) {
+      return Doctor.fromJson(jsonDecode(json));
     }
     return null;
   }

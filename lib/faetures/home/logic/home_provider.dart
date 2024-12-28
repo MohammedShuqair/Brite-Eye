@@ -1,9 +1,12 @@
 import 'package:brite_eye/core/extentions/color_theme.dart';
 import 'package:brite_eye/core/helpers/navigation_helper.dart';
+import 'package:brite_eye/core/helpers/user_helper.dart';
 import 'package:brite_eye/faetures/activities/ui/activities_screen.dart';
+import 'package:brite_eye/faetures/doctor/logic/doctor_provider.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/shared/vars/lang.dart';
+import '../../doctor/ui/doctor_screen.dart';
 import '../../profile/ui/profile_screen.dart';
 
 /// A logic class for managing the state and logic of the home screen.
@@ -11,13 +14,15 @@ class HomeProvider extends ChangeNotifier {
   /// The timestamp of the last back press.
   DateTime? currentBackPressTime;
 
+  DoctorProvider doctorProvider;
+
   /// A flag indicating whether the app can pop now.
   bool canPopNow = false;
 
   /// Constructs a [HomeProvider] and initializes the user logic.
   ///
   /// [userProvider] - The user logic to update the user from local storage.
-  HomeProvider();
+  HomeProvider({required this.doctorProvider});
 
   /// Handles the back button press.
   ///
@@ -71,8 +76,8 @@ class HomeProvider extends ChangeNotifier {
   /// Don't use const to enable language change in profile screen.
   List<Widget> get screens => [
         ActivitiesScreen(),
-        Container(
-          color: Colors.green,
+        DoctorScreen(
+          doctorProvider: doctorProvider,
         ),
         Container(
           color: Colors.blue,
@@ -88,6 +93,14 @@ class HomeProvider extends ChangeNotifier {
   /// [index] - The new index to set as the current index.
   void setIndex(int index) {
     currentIndex = index;
+    switch (index) {
+      case 1:
+        final child = UserHelper.getSelectedChild();
+        if (child != null) {
+          doctorProvider.performMoreRequest(params: child.userId);
+        }
+        break;
+    }
     notifyListeners();
   }
 }

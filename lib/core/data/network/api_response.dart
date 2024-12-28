@@ -41,6 +41,8 @@ class ApiResponse<T> {
   /// Returns true if the status is loading, false otherwise.
   bool loading() => status == ApiStatus.LOADING;
 
+  bool complete() => status == ApiStatus.COMPLETED || status == ApiStatus.MORE;
+
   /// Builds a widget based on the current status of the API response.
   ///
   /// [loading] is a function that returns a widget to be displayed when the status is loading.

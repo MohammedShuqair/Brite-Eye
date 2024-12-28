@@ -3,6 +3,7 @@ import 'package:brite_eye/core/helpers/navigation_helper.dart';
 import 'package:brite_eye/core/shared/controllers/langprovider.dart';
 import 'package:brite_eye/faetures/all_children/logic/children_provider.dart';
 import 'package:brite_eye/faetures/all_children/ui/children_screen.dart';
+import 'package:brite_eye/faetures/all_doctors/ui/doctors_screen.dart';
 import 'package:brite_eye/faetures/child/ui/child_form_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,9 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Settings"),
+      ),
       body: SafeArea(
           child: ListView(
         children: [
@@ -62,6 +66,13 @@ class ProfileScreen extends StatelessWidget {
             onTap: () {
               locator<ChildrenProvider>().performRequest();
               NavigationHelper.push(ChildrenScreen.id);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.local_hospital),
+            title: const Text("All Doctors"),
+            onTap: () {
+              NavigationHelper.push(DoctorsScreen.id);
             },
           ),
           ListTile(

@@ -14,4 +14,7 @@ class Endpoint {
   static const String child = "${baseUrl}children";
 
   static const String users = "${baseUrl}users";
+
+  static const String doctors = "${baseUrl}doctors";
+  static const String sessions = "${baseUrl}sessions";
 }

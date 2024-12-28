@@ -1,6 +1,7 @@
 import 'package:brite_eye/core/di/service_locator.dart';
 import 'package:brite_eye/faetures/activities/examination/ishihara/ui/result_screen.dart';
 import 'package:brite_eye/faetures/all_children/logic/children_provider.dart';
+import 'package:brite_eye/faetures/all_doctors/logic/doctor_provider.dart';
 import 'package:brite_eye/faetures/auth/ui/screens/login_screen.dart';
 import 'package:brite_eye/faetures/auth/ui/screens/signup_screen.dart';
 import 'package:brite_eye/faetures/child/logic/child_form_provider.dart';
@@ -12,6 +13,7 @@ import 'package:provider/provider.dart';
 import '../../faetures/activities/examination/ishihara/logic/Ishihara_provider.dart';
 import '../../faetures/activities/examination/ishihara/ui/ishihara_screen.dart';
 import '../../faetures/all_children/ui/children_screen.dart';
+import '../../faetures/all_doctors/ui/doctors_screen.dart';
 import '../../faetures/auth/logic/signup_provider.dart';
 import '../../faetures/auth/ui/screens/splash_screen.dart';
 import '../../faetures/child/model/child_model.dart';
@@ -97,6 +99,16 @@ GoRouter router = GoRouter(
           return ResultScreen(
             title: args['title'],
             score: args['score'],
+          );
+        },
+      ),
+      GoRoute(
+        path: DoctorsScreen.id,
+        name: DoctorsScreen.id,
+        builder: (context, state) {
+          return ChangeNotifierProvider.value(
+            value: locator<DoctorsProvider>(),
+            child: DoctorsScreen(),
           );
         },
       ),

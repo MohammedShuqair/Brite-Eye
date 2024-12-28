@@ -36,6 +36,17 @@ abstract class SingleRequestProvider<T> extends ChangeNotifier {
     }
   }
 
+  Future<void> performMoreRequest({Object? params}) async {
+    if (requestGard()) {
+      if (response?.data == null) {
+        setState(ApiResponse.loading());
+      } else {
+        setState(ApiResponse.more(data: response!.data));
+      }
+      _handleResponse(params: params);
+    }
+  }
+
   void _handleResponse({Object? params}) async {
     try {
       final result = await callRequest(params);
