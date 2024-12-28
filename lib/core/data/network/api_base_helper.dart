@@ -286,9 +286,13 @@ mixin class ApiBaseHelper {
   /// [statusCode] is the HTTP status code of the response.
   /// Throws an [AppException] if the response is not a valid JSON or if the status code is not 200.
   Map<String, dynamic> _returnResponse(String body, int statusCode) {
-    Map<String, dynamic> responseJson;
+    dynamic responseJson;
     try {
       responseJson = json.decode(body);
+      if (responseJson is List) {
+        Map<String, dynamic> temp = {"data": responseJson};
+        responseJson = temp;
+      }
     } catch (e) {
       log("not-json $body");
       throw AppException(

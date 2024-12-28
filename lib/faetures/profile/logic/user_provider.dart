@@ -1,4 +1,5 @@
 import 'package:brite_eye/core/helpers/user_helper.dart';
+import 'package:brite_eye/faetures/child/model/child_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -7,6 +8,7 @@ import '../repository/user_repository.dart';
 
 class UserProvider extends ChangeNotifier {
   User? user;
+  Child? selectedChild;
   final UserRepository _userRepository = UserRepository();
 
   static UserProvider get(BuildContext context) {
@@ -31,6 +33,7 @@ class UserProvider extends ChangeNotifier {
 
   void updateUser() {
     updateUserFromLocal();
+    getSelectedChild();
     updateUserFromApi();
   }
 
@@ -48,5 +51,35 @@ class UserProvider extends ChangeNotifier {
     if (this.user != null) {
       this.user!.copyWith(user);
     }
+  }
+
+  void getSelectedChild() {
+    final child = UserHelper.getSelectedChild();
+    selectedChild = child;
+    notifyListeners();
+  }
+
+  void saveSelectedChild(Child? child) {
+    var childId = child?.userId;
+    print("added $childId");
+
+    if (childId != null) {
+      selectedChild = child;
+      UserHelper.saveSelectedChild(child!);
+      print("updated");
+
+      notifyListeners();
+    }
+  }
+
+  bool isChildSelected(int? childId) {
+    if (childId != null) {
+      return selectedChild?.userId == childId;
+    }
+    return false;
+  }
+
+  bool childSelected() {
+    return selectedChild != null;
   }
 }

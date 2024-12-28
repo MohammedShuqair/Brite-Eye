@@ -1,5 +1,8 @@
+import 'package:brite_eye/core/di/service_locator.dart';
 import 'package:brite_eye/core/helpers/navigation_helper.dart';
 import 'package:brite_eye/core/shared/controllers/langprovider.dart';
+import 'package:brite_eye/faetures/all_children/logic/children_provider.dart';
+import 'package:brite_eye/faetures/all_children/ui/children_screen.dart';
 import 'package:brite_eye/faetures/child/ui/child_form_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,28 +22,50 @@ class ProfileScreen extends StatelessWidget {
           Consumer<LangProvider>(
             builder: (context, provider, child) {
               return ListTile(
-                title: DropdownButton<String>(
-                  value: provider.currentLocale.languageCode,
-                  items: provider.supportedLocales
-                      .map((locale) => DropdownMenuItem(
-                            value: locale.languageCode,
-                            child: Text(locale.languageCode),
-                          ))
-                      .toList(),
-                  onChanged: (v) {
-                    provider.changeLocale(v);
-                  },
+                leading: Icon(Icons.language),
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 100,
+                      child: DropdownButton<String>(
+                        value: provider.currentLocale.languageCode,
+                        underline: Container(),
+                        isExpanded: true,
+                        isDense: true,
+                        items: provider.supportedLocales
+                            .map((locale) => DropdownMenuItem(
+                                  value: locale.languageCode,
+                                  child: Text(locale.languageCode),
+                                ))
+                            .toList(),
+                        onChanged: (v) {
+                          provider.changeLocale(v);
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               );
             },
           ),
           ListTile(
+            leading: Icon(Icons.add_circle_outline),
             title: const Text("Add Child"),
             onTap: () {
               NavigationHelper.push(ChildFormScreen.id);
             },
           ),
           ListTile(
+            leading: Icon(Icons.people),
+            title: const Text("All Children"),
+            onTap: () {
+              locator<ChildrenProvider>().performRequest();
+              NavigationHelper.push(ChildrenScreen.id);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.logout),
             title: const Text("logout"),
             onTap: () async {
               NavigationHelper.showSnackBar("logged out successfully",

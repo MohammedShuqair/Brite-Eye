@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:brite_eye/core/data/local/shared_preferences.dart';
+import 'package:brite_eye/faetures/child/model/child_model.dart';
 
 import '../../faetures/profile/models/user.dart';
 
@@ -25,7 +28,6 @@ class UserHelper {
     }
   }
 
-
   /// Retrieves the user token from local storage.
   ///
   /// Returns the user token as a [String].
@@ -40,5 +42,18 @@ class UserHelper {
     if (token != null) {
       await SharedHelper.setSecuredString(PrefKeys.token, token);
     }
+  }
+
+  static Future<void> saveSelectedChild(Child child) async {
+    await SharedHelper.setString(
+        key: PrefKeys.selectedChild, value: jsonEncode(child.toJson()));
+  }
+
+  static Child? getSelectedChild() {
+    String? json = SharedHelper.getString(key: PrefKeys.selectedChild);
+    if (json != null) {
+      return Child.fromJson(jsonDecode(json));
+    }
+    return null;
   }
 }

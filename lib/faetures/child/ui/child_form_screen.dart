@@ -6,10 +6,11 @@ import 'package:brite_eye/core/shared/widgets/app_button.dart';
 import 'package:brite_eye/core/shared/widgets/app_field.dart';
 import 'package:brite_eye/core/shared/widgets/loadable_screen.dart';
 import 'package:brite_eye/core/shared/widgets/ssized_box.dart';
-import 'package:brite_eye/faetures/child/logic/child_form_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+
+import '../logic/child_form_provider.dart';
 
 class ChildFormScreen extends StatelessWidget {
   static const String id = '/child/form';

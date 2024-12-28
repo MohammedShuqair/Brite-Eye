@@ -3,7 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Enum representing the keys used in shared preferences.
-enum PrefKeys { language, token, onBoarding, userModel, userCountry }
+enum PrefKeys { language, token, onBoarding, userModel, selectedChild }
 
 /// A helper class for managing shared preferences and secure storage.
 class SharedHelper {

@@ -24,10 +24,12 @@ class NavigationHelper {
   ///
   /// [page] is the widget to replace the current page.
   /// Returns a [Future] that completes to the result value passed to [pop] when the replaced page is popped off the stack.
-  static Future<T?> pushReplacement<T>(String page, {Object? extra}) {
+  static Future<T?> pushReplacement<T>(String page,
+      {Object? extra, Map<String, String>? pathParameters}) {
     return router.pushReplacementNamed<T>(
       page,
       extra: extra,
+      pathParameters: pathParameters ?? <String, String>{},
     );
   }
 

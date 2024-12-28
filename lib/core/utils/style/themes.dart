@@ -41,6 +41,12 @@ ThemeData get lightTheme {
   );
   return ThemeData(
       scaffoldBackgroundColor: AppColors.surface,
+      listTileTheme: ListTileThemeData(
+        selectedColor: AppColors.primary,
+        titleTextStyle: textTheme.headlineMedium?.copyWith(
+          fontSize: 18.sp,
+        ),
+      ),
       inputDecorationTheme: InputDecorationTheme(
         contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.w),
         errorMaxLines: 2,

@@ -1,5 +1,5 @@
 class ChildParams {
-  final int? userId;
+  int? userId;
   final int? caregiverId;
   final String? name;
   final String? birthDate;
