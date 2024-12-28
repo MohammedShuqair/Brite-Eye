@@ -79,9 +79,6 @@ class HomeProvider extends ChangeNotifier {
         DoctorScreen(
           doctorProvider: doctorProvider,
         ),
-        Container(
-          color: Colors.blue,
-        ),
         const ProfileScreen(),
       ];
 

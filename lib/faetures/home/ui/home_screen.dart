@@ -60,16 +60,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   label: "doctor",
                 ),
-                BottomNavigationBarItem(
-                  icon: Assets.icons.report.svg(),
-                  activeIcon: Assets.icons.report.svg(
-                    colorFilter: ColorFilter.mode(
-                      context.primary,
-                      BlendMode.srcIn,
-                    ),
-                  ),
-                  label: "reports",
-                ),
                 const BottomNavigationBarItem(
                   icon: Icon(Icons.settings),
                   label: "settings",
