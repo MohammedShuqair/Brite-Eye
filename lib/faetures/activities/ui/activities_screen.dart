@@ -8,6 +8,7 @@ import 'package:brite_eye/faetures/profile/logic/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../child/ui/child_form_screen.dart';
 import '../examination/ishihara/ui/ishihara_screen.dart';
@@ -63,6 +64,55 @@ class ActivitiesScreen extends StatelessWidget {
                               color: context.onSurface,
                             ),
                           ),
+                        ),
+                        SSizedBox(
+                          height: 32.h,
+                        ),
+                        Text(
+                          "Vision Therapy 👩🏽‍⚕️",
+                          style: context.bodyLarge,
+                        ),
+                        SSizedBox(
+                          height: 24.h,
+                        ),
+                        ListTile(
+                          onTap: () async {
+                            final url =
+                                "https://www.youtube.com/watch?v=mqXR8O2VJLo";
+                            await _launchUrl(url);
+                          },
+                          tileColor: context.secondaryContainer,
+                          leading: const Icon(
+                            Icons.link,
+                            size: 30,
+                          ),
+                          title: Text(
+                            "voka. by",
+                            style: context.bodyLarge.copyWith(
+                              color: context.onSurface,
+                            ),
+                          ),
+                        ),
+                        SSizedBox(
+                          height: 4,
+                        ),
+                        ListTile(
+                          onTap: () async {
+                            final url =
+                                "https://www.youtube.com/watch?v=LXYkM28SEFc";
+                            await _launchUrl(url);
+                          },
+                          tileColor: context.secondaryContainer,
+                          leading: const Icon(
+                            Icons.link,
+                            size: 30,
+                          ),
+                          title: Text(
+                            "See In 3D",
+                            style: context.bodyLarge.copyWith(
+                              color: context.onSurface,
+                            ),
+                          ),
                         )
                       ],
                     ),
@@ -82,6 +132,13 @@ class ActivitiesScreen extends StatelessWidget {
         );
       },
     );
+  }
+
+  Future<void> _launchUrl(String url) async {
+    var uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
   }
 }
 
