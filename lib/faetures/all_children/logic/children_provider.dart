@@ -14,8 +14,8 @@ class ChildrenProvider extends SingleRequestProvider<List<Child>> {
   });
 
   @override
-  Future<Either<AppException, List<Child>>> callRequest(_) {
-    return childRepository.getChildren();
+  Future<Either<AppException, List<Child>>> callRequest(caregiverId) {
+    return childRepository.getChildren(caregiverId as int);
   }
 
   @override

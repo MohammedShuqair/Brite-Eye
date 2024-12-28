@@ -73,10 +73,8 @@ GoRouter router = GoRouter(
         path: ChildrenScreen.id,
         name: ChildrenScreen.id,
         builder: (context, state) {
-          var childrenProvider = locator<ChildrenProvider>();
-          childrenProvider.performRequest();
           return ChangeNotifierProvider.value(
-            value: childrenProvider,
+            value: locator<ChildrenProvider>(),
             child: ChildrenScreen(),
           );
         },

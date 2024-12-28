@@ -56,11 +56,15 @@ class ChildRepository {
   }
 
   //get List<Child>
-  Future<Either<AppException, List<Child>>> getChildren() async {
+  Future<Either<AppException, List<Child>>> getChildren(int caregiverId) async {
     return defaultRepository.call(
       request: () => apiBaseHelper.get(Endpoint.child),
       resultBuilder: (json) async {
-        return (json['data'] as List).map((e) => Child.fromJson(e)).toList();
+        final list =
+            (json['data'] as List).map((e) => Child.fromJson(e)).toList();
+        return list
+            .where((element) => element.caregiversId == caregiverId)
+            .toList();
       },
     );
   }

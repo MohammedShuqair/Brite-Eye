@@ -1,7 +1,5 @@
-import 'package:brite_eye/core/di/service_locator.dart';
 import 'package:brite_eye/core/helpers/navigation_helper.dart';
 import 'package:brite_eye/core/shared/controllers/langprovider.dart';
-import 'package:brite_eye/faetures/all_children/logic/children_provider.dart';
 import 'package:brite_eye/faetures/all_children/ui/children_screen.dart';
 import 'package:brite_eye/faetures/all_doctors/ui/doctors_screen.dart';
 import 'package:brite_eye/faetures/child/ui/child_form_screen.dart';
@@ -64,7 +62,6 @@ class ProfileScreen extends StatelessWidget {
             leading: Icon(Icons.people),
             title: const Text("All Children"),
             onTap: () {
-              locator<ChildrenProvider>().performRequest();
               NavigationHelper.push(ChildrenScreen.id);
             },
           ),
